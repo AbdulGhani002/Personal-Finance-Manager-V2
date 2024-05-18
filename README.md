@@ -21,8 +21,8 @@ Track your expenses, set budgets, and achieve your financial goals effortlessly.
 
 1. **Clone the Repository**: Begin by cloning the repository to your local machine:
     ```bash
-    git clone https://github.com/your-username/personal-finance-manager.git
-    cd personal-finance-manager
+    git clone https://github.com/your-username/personal-finance-manager-v2.git
+    cd personal-finance-manager-v2
     ```
 
 2. **Install Dependencies**: Install the necessary dependencies using npm:
@@ -46,7 +46,8 @@ Track your expenses, set budgets, and achieve your financial goals effortlessly.
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request. Feel free to open an issue if you encounter any bugs or have suggestions for improvements.
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request. 
+Feel free to open an issue if you encounter any bugs or have suggestions for improvements.
 
 ## Repository Statistics
 
