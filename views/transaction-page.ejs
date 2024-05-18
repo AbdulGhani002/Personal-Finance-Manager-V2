@@ -98,19 +98,8 @@
     </button>
   </div>
   <div class="container">
-    <form class="form">
+    <form class="form" action="/transact-money" method="POST">
       <h2>Payment</h2>
-      <div class="form-group">
-        <label for="text">Make Payment For</label>
-        <input type="radio"  name="payment" value="Bill">
-        <span>Bill Payment</span>
-        <input type="radio"  name="payment" value="Account Transfer">
-        <span>Account Transfer</span>
-      </div>
-      <div class="form-group">
-        <label for="text">ID</label>
-        <input type="text" id="amount" name="ID" required>
-      </div>
       <div class="form-group">
         <label for="number">Amount</label>
         <input type="number" id="amount" name="amount" required>

@@ -102,9 +102,14 @@
       .button:hover {
         background-color: #45a049;
       }
+      a{
+        background-color: inherit;
+        text-decoration: none;
+        color: inherit;
+
+      }
     </style>
   </head>
-  <body>
     <div class="menu">
       <ul>
         <li><a href="/home">Home</a></li>
@@ -115,21 +120,27 @@
     </div>
     <div class="container" id="Home">
       <div class="tiles">
+        <a href="/add-money">
         <div class="tile">
           <i class="fas fa-plus"></i>
-          <span><a href="/add-money">Add Funds</a></span>
+          <span>Add Funds</span>
         </div>
+      </a>
+      <a href="/transaction-page">
         <div class="tile">
           <i class="fas fa-exchange-alt"></i>
-          <span><a href="/transaction-page">Transact Funds</a></span>
+          <span>Transact Funds</span>
         </div>
+      </a>
       </div>
-      <a href="/logout"></a>
-      <div class="button-container">
-        <div class="button">
-          Log Out
+    </a>
+      <a href="/logout">
+        <div class="button-container">
+          <div class="button">
+            Log Out
+          </div>
         </div>
-      </div>
+      </a>
     </a>
     </div>
   </body>
