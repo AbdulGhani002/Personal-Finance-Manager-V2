@@ -19,6 +19,7 @@
     "mysql2": "^3.9.7",
     "node": "^22.2.0",
     "nodemon": "^3.1.0",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "tedious": "^18.2.0"
   }
 }

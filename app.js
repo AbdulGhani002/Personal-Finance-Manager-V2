@@ -4,6 +4,7 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./data/database");
 const authRoutes = require("./routes/authRoutes");
+const baseRoutes = require("./routes/baseRoutes");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +26,7 @@ app.use(
   })
 );
 sequelize.sync();
+app.use(baseRoutes)
 app.use(authRoutes);
 
 const PORT = process.env.PORT || 5500;
