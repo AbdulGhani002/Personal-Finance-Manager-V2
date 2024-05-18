@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Monetarily Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #92c5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: #48b6e2;
+      color: #fff;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #92c5f5;
+    }
+
+    .back-button i {
+      font-size: 24px;
+    }
+
+    .container {
+      width: 400px;
+      padding: 20px;
+      background-color: #48b6e2;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgb(0, 0, 0);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="radio"],
+    .form-group span {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .form-group input[type="radio"] {
+      margin: 0 5px 0 0;
+    }
+
+    .form-group input[type="date"],
+    .form-group input[type="text"],
+    .form-group input[ type="number"] {
+      width: 95%;
+      padding: 6px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <button class="back-button">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  <div class="container">
+    <form class="form">
+      <h2>Payment</h2>
+      <div class="form-group">
+        <label for="text">Make Payment For</label>
+        <input type="radio"  name="payment" value="Bill">
+        <span>Bill Payment</span>
+        <input type="radio"  name="payment" value="Account Transfer">
+        <span>Account Transfer</span>
+      </div>
+      <div class="form-group">
+        <label for="text">ID</label>
+        <input type="text" id="amount" name="ID" required>
+      </div>
+      <div class="form-group">
+        <label for="number">Amount</label>
+        <input type="number" id="amount" name="amount" required>
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      <div class="form-group">
+        <label for="text">Description</label>
+        <input type="text" id="amount" name="description" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Confirm</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
