@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Goal - Monetarily Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Soft background color */
+        }
+
+        .menu {
+            background-color: #48b6e2;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu li {
+            margin: 0 10px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+
+        .menu a:hover {
+            color: #f0f0f0; /* Lighter color on hover */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff; /* White background */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333; /* Dark text color */
+        }
+
+        .goal-description p {
+            margin: 5px 0;
+            color: #666; /* Slightly darker text color */
+        }
+
+        .savings-info p {
+            margin: 5px 0;
+            color: #666; /* Slightly darker text color */
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/show-budget">Budget</a></li>
+        <li><a href="/show-goals">Goals</a></li>
+        <li><a href="/show-report">Report</a></li>
+    </ul>
+</div>
+<div class="container">
+    <% if (goal) { %>
+    <h1><%= goal.title %></h1>
+    <div class="goal-description">
+        <p>Description: <%= goal.description %></p>
+        <p>Amount: <%= goal.amount %></p>
+        <p>Deadline: <%= new Date(goal.deadline).toLocaleDateString() %></p>
+    </div>
+    <% } else { %>
+    <p>Goal not found.</p>
+    <% } %>
+    <div class="savings-info">
+        <% if (goal) { %>
+        <p>Months Remaining: <%= monthsRemaining %></p>
+        <p>Monthly Savings Needed: <%= monthlySavingsNeeded %></p>
+        <p>Expected Completion Date: <%= expectedCompletionDate %></p>
+        <p><%= suggestion %></p>
+        <% } %>
+    </div>
+</div>
+
+</body>
+</html>

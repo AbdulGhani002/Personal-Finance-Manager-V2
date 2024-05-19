@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Financial Report</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     .menu {
         background-color: #48b6e2;
@@ -62,6 +63,9 @@
     }
     .card-body p {
       font-size: 1.2em;
+    }
+    canvas {
+      display: block;
     }
   </style>
 </head>
@@ -121,50 +125,54 @@
     </div>
 
     <div class="chart-container">
-      <div id="incomeExpenseChart"></div>
+      <canvas id="pieChart" width="400" height="200"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="threeJsCanvas" width="400" height="200"></canvas>
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const incomeDetails =  <%-JSON.stringify(incomeDetails.map(i => ({ x: new Date(i.date).getTime(), y: i.amount }))) %>;
-      const expenseDetails = <%- JSON.stringify(expenseDetails.map(e => ({ x: new Date(e.date).getTime(), y: e.amount }))) %>;
+    const labels = ['Income', 'Expense'];
+    const data = [<%= totalIncome.toFixed(2) %>, <%= totalExpense.toFixed(2) %>];
+    const colors = ['#4CAF50', '#F44336'];
 
-      const options = {
-        chart: {
-          type: 'line',
-          height: '100%'
-        },
-        series: [
-          {
-            name: 'Income',
-            data: incomeDetails
-          },
-          {
-            name: 'Expenses',
-            data: expenseDetails
-          }
-        ],
-        xaxis: {
-          type: 'datetime',
-          title: {
-            text: 'Date'
-          }
-        },
-        yaxis: {
-          title: {
-            text: 'Amount(Rs.)'
-          }
-        },
-        colors: ['#4CAF50', '#F44336'],
-        stroke: {
-          curve: 'smooth'
-        }
-      };
-
-      const chart = new ApexCharts(document.querySelector("#incomeExpenseChart"), options);
-      chart.render();
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: data,
+          backgroundColor: colors
+        }]
+      }
     });
+
+    // Three.js code
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(400, 200); // Set size for Three.js canvas
+    document.getElementById('threeJsCanvas').appendChild(renderer.domElement);
+    
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    
+    camera.position.z = 5;
+    
+    const animate = function () {
+      requestAnimationFrame(animate);
+    
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+    
+      renderer.render(scene, camera);
+    };
+    
+    animate();
   </script>
 </body>
 </html>

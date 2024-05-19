@@ -10,4 +10,8 @@ router.post('/add-money', isAuthenticated, baseController.addMoney);
 router.post('/transact-money', isAuthenticated, baseController.transactMoney);
 router.get('/show-report' , isAuthenticated , baseController.showReport)
 router.get('/show-budget' , isAuthenticated , baseController.showBudget)
+router.get('/show-goals' , isAuthenticated , baseController.showGoals)
+router.get('/add-goal' , isAuthenticated , baseController.renderAddGoalPage)
+router.post('/add-goal' , isAuthenticated , baseController.addGoal)
+router.get('/show-goal/:id' , isAuthenticated , baseController.showGoal)
 module.exports = router;
