@@ -8,4 +8,6 @@ router.get('/add-money', isAuthenticated, baseController.renderAddMoneyPage);
 router.get('/transaction-page' , isAuthenticated, baseController.renderTransactionPage);
 router.post('/add-money', isAuthenticated, baseController.addMoney);
 router.post('/transact-money', isAuthenticated, baseController.transactMoney);
+router.get('/show-report' , isAuthenticated , baseController.showReport)
+router.get('/show-budget' , isAuthenticated , baseController.showBudget)
 module.exports = router;

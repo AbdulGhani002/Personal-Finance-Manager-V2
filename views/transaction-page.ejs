@@ -4,6 +4,35 @@
   <title>Monetarily Management</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
+    .menu {
+        background-color: #48b6e2;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 25px;
+      }
+
+      .menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .menu li {
+        margin: 0;
+      }
+
+      .menu a {
+        display: block;
+        padding: 24px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .menu a:hover {
+        text-decoration: underline;
+      }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #92c5f5;
@@ -92,6 +121,14 @@
   </style>
 </head>
 <body>
+  <div class="menu">
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/show-budget">Budget</a></li>
+      <li><a href="/">Goals</a></li>
+      <li><a href="/show-report">Report</a></li>
+    </ul>
+  </div>
   <div>
     <button class="back-button">
       <i class="fas fa-arrow-left"></i>

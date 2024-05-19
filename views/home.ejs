@@ -69,11 +69,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: background-color 0.3s;
+        transition: all 0.5s ease-in-out;
       }
 
       .tile:hover {
         background-color: #45a049;
+        color: #fff;
       }
 
       .tile i {
@@ -102,24 +103,24 @@
         border-radius: 4px;
         cursor: pointer;
       }
-
-      .button:hover {
-        background-color: #45a049;
-      }
       a{
         background-color: inherit;
         text-decoration: none;
         color: inherit;
-
       }
+      .button:hover {
+        background-color: #45a049;
+      }
+      
     </style>
   </head>
+  <body>
     <div class="menu">
       <ul>
         <li><a href="/home">Home</a></li>
-        <li><a href="/">Budget</a></li>
+        <li><a href="/show-budget">Budget</a></li>
         <li><a href="/">Goals</a></li>
-        <li><a href="/">Report</a></li>
+        <li><a href="/show-report">Report</a></li>
       </ul>
     </div>
     <section>
@@ -140,13 +141,13 @@
         <a href="/add-money">
         <div class="tile">
           <i class="fas fa-plus"></i>
-          <span>Add Funds</span>
+          <span>Add Income</span>
         </div>
       </a>
       <a href="/transaction-page">
         <div class="tile">
           <i class="fas fa-exchange-alt"></i>
-          <span>Transact Funds</span>
+          <span>Add Expense</span>
         </div>
       </a>
       </div>

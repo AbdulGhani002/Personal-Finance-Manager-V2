@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Report</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style>
+    .menu {
+        background-color: #48b6e2;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 25px;
+      }
+
+      .menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .menu li {
+        margin: 0;
+      }
+
+      .menu a {
+        display: block;
+        padding: 24px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .menu a:hover {
+        text-decoration: underline;
+      }
+
+    body {
+      background: linear-gradient(to right, #92c5f5, #48b6e2);
+      font-family: 'Arial', cursive;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .chart-container {
+      position: relative;
+      margin: auto;
+      height: 50vh;
+      width: 80vw;
+    }
+    .card-header {
+      background-color: #48b6e2; 
+      color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .card-body p {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/show-budget">Budget</a></li>
+      <li><a href="/">Goals</a></li>
+      <li><a href="/show-report">Report</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2>Financial Report for <%= user.name %></h2>
+      </div>
+      <div class="card-body">
+        <p><strong>Total Income:</strong> <%= totalIncome.toFixed(2) %>Rs.</p>
+        <p><strong>Total Expense:</strong> <%= totalExpense.toFixed(2) %>Rs.</p>
+        <p><strong>Balance:</strong> <%= balance.toFixed(2) %>Rs.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Income Details</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <% incomeDetails.forEach(income => { %>
+            <li class="list-group-item">
+              <strong>Date:</strong> <%= new Date(income.date).toDateString() %> 
+              <strong>Amount:</strong> $<%= income.amount.toFixed(2) %>
+              <strong>Description:</strong> <%= income.description %>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Expense Details</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <% expenseDetails.forEach(expense => { %>
+            <li class="list-group-item">
+              <strong>Date:</strong> <%= new Date(expense.date).toDateString() %> 
+              <strong>Amount:</strong> $<%= expense.amount.toFixed(2) %>
+              <strong>Description:</strong> <%= expense.description %>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div id="incomeExpenseChart"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const incomeDetails =  <%-JSON.stringify(incomeDetails.map(i => ({ x: new Date(i.date).getTime(), y: i.amount }))) %>;
+      const expenseDetails = <%- JSON.stringify(expenseDetails.map(e => ({ x: new Date(e.date).getTime(), y: e.amount }))) %>;
+
+      const options = {
+        chart: {
+          type: 'line',
+          height: '100%'
+        },
+        series: [
+          {
+            name: 'Income',
+            data: incomeDetails
+          },
+          {
+            name: 'Expenses',
+            data: expenseDetails
+          }
+        ],
+        xaxis: {
+          type: 'datetime',
+          title: {
+            text: 'Date'
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Amount(Rs.)'
+          }
+        },
+        colors: ['#4CAF50', '#F44336'],
+        stroke: {
+          curve: 'smooth'
+        }
+      };
+
+      const chart = new ApexCharts(document.querySelector("#incomeExpenseChart"), options);
+      chart.render();
+    });
+  </script>
+</body>
+</html>
