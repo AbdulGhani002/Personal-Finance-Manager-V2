@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-
+const getUserBalanceUtil = require('../util/getUserBalance');
 const signup = async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -42,8 +42,13 @@ const renderLoginForm = (req, res) => {
   res.render('login');
 };
 
-const renderHomePage = (req, res) => {
-  res.render('home');
+const renderHomePage =async (req, res) => {
+  const user = req.session.user;
+  if (!user) {
+    return res.redirect('/login');
+  }
+  const currentBalance =await  getUserBalanceUtil(user.id);
+  res.render('home' , {currentBalance, user});
 };
 
 module.exports = { signup, login, logout, renderSignupForm, renderLoginForm, renderHomePage };
