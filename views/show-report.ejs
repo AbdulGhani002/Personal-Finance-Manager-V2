@@ -74,7 +74,7 @@
     <ul>
       <li><a href="/home">Home</a></li>
       <li><a href="/show-budget">Budget</a></li>
-      <li><a href="/">Goals</a></li>
+      <li><a href="/show-goals">Goals</a></li>
       <li><a href="/show-report">Report</a></li>
     </ul>
   </div>
@@ -99,7 +99,7 @@
           <% incomeDetails.forEach(income => { %>
             <li class="list-group-item">
               <strong>Date:</strong> <%= new Date(income.date).toDateString() %> 
-              <strong>Amount:</strong> $<%= income.amount.toFixed(2) %>
+              <strong>Amount:</strong> <%= income.amount.toFixed(2) %>Rs.
               <strong>Description:</strong> <%= income.description %>
             </li>
           <% }); %>
@@ -116,7 +116,7 @@
           <% expenseDetails.forEach(expense => { %>
             <li class="list-group-item">
               <strong>Date:</strong> <%= new Date(expense.date).toDateString() %> 
-              <strong>Amount:</strong> $<%= expense.amount.toFixed(2) %>
+              <strong>Amount:</strong> <%= expense.amount.toFixed(2) %>Rs.
               <strong>Description:</strong> <%= expense.description %>
             </li>
           <% }); %>
@@ -139,7 +139,7 @@
 
     const ctx = document.getElementById('pieChart').getContext('2d');
     const pieChart = new Chart(ctx, {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [{
@@ -149,11 +149,10 @@
       }
     });
 
-    // Three.js code
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(400, 200); // Set size for Three.js canvas
+    renderer.setSize(400, 200);
     document.getElementById('threeJsCanvas').appendChild(renderer.domElement);
     
     const geometry = new THREE.BoxGeometry();

@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const getUserBalanceUtil = require('../util/getUserBalance');
+
 const signup = async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -7,7 +8,7 @@ const signup = async (req, res) => {
     req.session.user = { id: user.id, username: user.name, email: user.email };
     req.session.isAuthenticated = true;
     res.redirect('/home');
-  } catch (err) {
+  } catch (error) {
     res.status(500).send('Error signing up');
   }
 };
@@ -19,13 +20,13 @@ const login = async (req, res) => {
     req.session.user = { id: user.id, username: user.name, email: user.email };
     req.session.isAuthenticated = true;
     res.redirect('/home');
-  } catch (err) {
+  } catch (error) {
     res.status(401).send('Invalid email or password');
   }
 };
 
 const logout = (req, res) => {
-  req.session.destroy((err) => {
+  req.session.destroy(err => {
     if (err) {
       return res.redirect('/home');
     }
@@ -42,13 +43,24 @@ const renderLoginForm = (req, res) => {
   res.render('login');
 };
 
-const renderHomePage =async (req, res) => {
-  const user = req.session.user;
+const renderHomePage = async (req, res) => {
+  const { user } = req.session;
   if (!user) {
     return res.redirect('/login');
   }
-  const currentBalance =await  getUserBalanceUtil(user.id);
-  res.render('home' , {currentBalance, user});
+  try {
+    const currentBalance = await getUserBalanceUtil(user.id);
+    res.render('home', { currentBalance, user });
+  } catch (error) {
+    res.status(500).send('Error loading home page');
+  }
 };
 
-module.exports = { signup, login, logout, renderSignupForm, renderLoginForm, renderHomePage };
+module.exports = {
+  signup,
+  login,
+  logout,
+  renderSignupForm,
+  renderLoginForm,
+  renderHomePage
+};
