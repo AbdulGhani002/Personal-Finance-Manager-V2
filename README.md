@@ -31,12 +31,13 @@ Track your expenses, set budgets, and achieve your financial goals effortlessly.
     ```
 
 3. **Set up Environment Variables**: Create a `.env` file in the root directory and add the following environment variables:
-    ```env
+    ```.env
+   HOST=localhost
+    USER=root
+    PASSWORD=12345
+    DATABASE=personal_finance_manager
     PORT=3000
-    DB_HOST=localhost
-    DB_USER=root
-    DB_PASSWORD=password
-    DB_NAME=finance_manager
+    SESSION_SECRET=afjmkeoimkkmeoioieoi4894598fdjdmcmd-&EJJREIJMCN
     ```
 
 4. **Start the Application**: Launch the application using npm:
